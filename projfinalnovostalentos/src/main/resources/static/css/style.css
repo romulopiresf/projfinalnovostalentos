@@ -1,0 +1,30 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #090136;
+}
+
+.login-form{
+    margin: 0 auto;
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 10px;
+}
+
+.login-form p{
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.login-form input{
+    display: block;
+    padding: 10px;
+}

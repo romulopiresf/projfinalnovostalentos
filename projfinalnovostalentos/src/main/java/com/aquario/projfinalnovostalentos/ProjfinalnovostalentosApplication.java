@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProjfinalnovostalentosApplication {
 
+	public static final String AppName = "Aquário";
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjfinalnovostalentosApplication.class, args);
 	}
