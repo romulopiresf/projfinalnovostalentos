@@ -12,23 +12,23 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class LoginController extends GenericController {
+public class CadastroUsuarioController extends GenericController {
 
     @Autowired
     private UsuarioService service;
 
-    @GetMapping("/login")
+    @GetMapping("/cadastrar-usuario")
     public String loginPage(ModelMap modelMap){
         this.setUsuario(null);
-        this.setup(modelMap, "Login");
-        return "login";
+        this.setup(modelMap, "Cadastrar Usuário");
+        return "cadastrar-usuario";
     }
 
-    @PostMapping(value="/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String proccessForm (LoginForm loginForm, ModelMap modelMap){
-        System.out.println(loginForm);
+    @PostMapping(value="/cadastrar-usuario", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String proccessForm (Usuario usuarioForm, ModelMap modelMap){
+        System.out.println(usuarioForm);
         try{
-            Usuario usuario = this.service.login(loginForm);
+            Usuario usuario = this.service.register(usuarioForm);
             this.setUsuario(usuario);
             this.setup(modelMap, "Home");
             return "home";
@@ -36,8 +36,8 @@ public class LoginController extends GenericController {
         catch(Exception ex){
             this.setUsuario(null);
             modelMap.addAttribute("erro", ex.getMessage());
-            this.setup(modelMap, "Login");
-            return "login";
+            this.setup(modelMap, "Cadastrar Usuário");
+            return "cadastrar-usuario";
         }
      
     }

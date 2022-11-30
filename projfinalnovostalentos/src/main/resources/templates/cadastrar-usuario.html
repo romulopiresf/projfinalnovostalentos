@@ -12,14 +12,15 @@
 <body>
     <div class="login-form">
         <p th:text="${appName}"></p>
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/cadastrar-usuario}" method="post">
+            <input type="text" placeholder="Nome" name="nome" required/>
             <input type="email" placeholder="E-mail" name="email" required/>
-            <input type="password" placeholder="Senha" name="password" required/>
-            <input type="submit" value="Login"/>
+            <input type="password" placeholder="Senha" name="senha" required/>
+            <input type="submit" value="Cadastrar"/>
         </form> 
         <div class="erro" th:text="${erro}"></div>
         <hr/>
-        <a th:href="@{/cadastrar-usuario}">Cadastro</a>
+        <a th:href="@{/login}">Login</a>
     </div>
 </body>
 
