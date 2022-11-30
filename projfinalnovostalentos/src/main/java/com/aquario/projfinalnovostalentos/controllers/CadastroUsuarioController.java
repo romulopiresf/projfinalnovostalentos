@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.aquario.projfinalnovostalentos.models.Usuario;
 import com.aquario.projfinalnovostalentos.services.UsuarioService;
-import com.aquario.projfinalnovostalentos.utils.LoginForm;
 import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,7 +17,7 @@ public class CadastroUsuarioController extends GenericController {
     private UsuarioService service;
 
     @GetMapping("/cadastrar-usuario")
-    public String loginPage(ModelMap modelMap){
+    public String registerPage(ModelMap modelMap){
         this.setUsuario(null);
         this.setup(modelMap, "Cadastrar Usuário");
         return "cadastrar-usuario";

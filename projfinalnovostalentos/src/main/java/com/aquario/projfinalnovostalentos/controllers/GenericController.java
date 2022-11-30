@@ -7,15 +7,15 @@ import org.springframework.ui.ModelMap;
 
 public class GenericController {
 
-    private Usuario usuario;
+    private static Usuario usuario;
 
 
     public Usuario getUsuario() {
-        return this.usuario;
+        return GenericController.usuario;
     }
 
     public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+        GenericController.usuario = usuario;
     }
 
 
