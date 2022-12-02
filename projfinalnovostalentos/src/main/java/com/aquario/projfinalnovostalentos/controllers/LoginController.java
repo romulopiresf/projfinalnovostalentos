@@ -30,8 +30,7 @@ public class LoginController extends GenericController {
         try{
             Usuario usuario = this.service.login(loginForm);
             this.setUsuario(usuario);
-            this.setup(modelMap, "Home");
-            return "home";
+            return "redirect:home";
         }
         catch(Exception ex){
             this.setUsuario(null);
@@ -42,5 +41,10 @@ public class LoginController extends GenericController {
      
     }
 
+    @GetMapping("/logout")
+    public String logoutPage(ModelMap modelMap){
+        this.setUsuario(null);
+        return "redirect:login";
+    }
     
 }

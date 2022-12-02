@@ -22,9 +22,18 @@ public class HomeController extends GenericController {
         Iterable<Aquario> aquarios = repository.findAll();
         modelMap.addAttribute("aquarios", aquarios);
     
-        this.setup(modelMap, "Home");
+        this.setup(modelMap, "Aquários", "/criar-aquario");
         return "home";
     }
     
+    @GetMapping("/")
+    public String indexPage(ModelMap modelMap){
+        if(getUsuario() == null){
+            return "redirect:login";
+        }
+        else{
+            return "redirect:home";
+        }
+    }
     
 }

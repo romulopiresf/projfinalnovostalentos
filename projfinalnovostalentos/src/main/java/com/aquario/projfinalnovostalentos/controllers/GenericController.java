@@ -18,12 +18,20 @@ public class GenericController {
         GenericController.usuario = usuario;
     }
 
-
     protected void setup (ModelMap modelMap, String pageName){
+        setup(modelMap, pageName, null);
+    }
+
+    protected void setup (ModelMap modelMap, String pageName, String addPage){
         modelMap.addAttribute("appName", ProjfinalnovostalentosApplication.AppName);
         modelMap.addAttribute("title", ProjfinalnovostalentosApplication.AppName + " - " + pageName);
+        modelMap.addAttribute("page", pageName);
+        if(addPage!=null){
+            modelMap.addAttribute("addPage", addPage);
+        }
         if(usuario!=null){
             modelMap.addAttribute("userName", usuario.getNome()); 
+            modelMap.addAttribute("userPhoto", usuario.getFoto());
         }
     }
 

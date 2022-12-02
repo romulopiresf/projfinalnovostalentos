@@ -29,14 +29,17 @@ public class CadastroUsuarioController extends GenericController {
         try{
             Usuario usuario = this.service.register(usuarioForm);
             this.setUsuario(usuario);
-            this.setup(modelMap, "Home");
-            return "home";
+            return "redirect:home";
         }
         catch(Exception ex){
             this.setUsuario(null);
             modelMap.addAttribute("erro", ex.getMessage());
             this.setup(modelMap, "Cadastrar Usuário");
             return "cadastrar-usuario";
+
+
+
+
         }
      
     }

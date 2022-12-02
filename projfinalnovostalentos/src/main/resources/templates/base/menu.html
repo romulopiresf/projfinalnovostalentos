@@ -1,3 +1,14 @@
 <nav th:fragment="menu">
+    <div th:style="'background-image:url(' + ${userPhoto} + ');'"></div>
+    <p th:text="${userName}"></p>
+    <a th:href="@{/acoes}">Ações</a>
+    <a th:href="@{/home}">Aquários</a>
+    <a th:href="@{/equipamentos}">Equipamentos</a>
+    <a th:href="@{/historico}">Histórico de Equipamentos</a>
+    <a th:href="@{/parametros}">Parâmetros</a>
+    <a th:href="@{/especies}">Espécies</a>
     
+
+
+    <a th:href="@{/logout}">Sair</a>
 </nav>
