@@ -10,12 +10,16 @@ public class GenericController {
     private static Usuario usuario;
 
 
-    public Usuario getUsuario() {
+    protected Usuario getUsuario() {
         return GenericController.usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    protected void setUsuario(Usuario usuario) {
         GenericController.usuario = usuario;
+    }
+
+    protected boolean isLogged(){
+        return getUsuario() != null;
     }
 
     protected void setup (ModelMap modelMap, String pageName){
@@ -29,9 +33,9 @@ public class GenericController {
         if(addPage!=null){
             modelMap.addAttribute("addPage", addPage);
         }
-        if(usuario!=null){
-            modelMap.addAttribute("userName", usuario.getNome()); 
-            modelMap.addAttribute("userPhoto", usuario.getFoto());
+        if(isLogged()){
+            modelMap.addAttribute("usuario", getUsuario()); 
+        
         }
     }
 

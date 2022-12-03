@@ -2,7 +2,7 @@ package com.aquario.projfinalnovostalentos.utils;
 
 public class LoginForm {
     private String email;
-    private String password;
+    private String senha;
 
 
     public String getEmail() {
@@ -13,12 +13,12 @@ public class LoginForm {
         this.email = email;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getSenha() {
+        return this.senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 
@@ -26,9 +26,10 @@ public class LoginForm {
     public String toString() {
         return "{" +
             " email='" + getEmail() + "'" +
-            ", password='" + getPassword() + "'" +
+            ", senha='" + getSenha() + "'" +
             "}";
     }
+
 
 }
 

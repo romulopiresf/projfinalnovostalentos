@@ -2,11 +2,14 @@ package com.aquario.projfinalnovostalentos.services;
 
 import com.aquario.projfinalnovostalentos.models.Usuario;
 import com.aquario.projfinalnovostalentos.repositories.UsuarioRepository;
+import com.aquario.projfinalnovostalentos.utils.FileUpload;
 import com.aquario.projfinalnovostalentos.utils.LoginForm;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioService {
@@ -22,7 +25,7 @@ public class UsuarioService {
         Optional<Usuario> checkUsuario = this.repository.findByEmail(loginForm.getEmail());
         if(checkUsuario.isPresent()){
             Usuario usuario = checkUsuario.get(); 
-            if(usuario.getSenha().equals(usuario.getSenha())){
+            if(usuario.getSenha().equals(loginForm.getSenha())){
                 return usuario;
             }
             else{
@@ -44,6 +47,18 @@ public class UsuarioService {
         else{
             throw new Exception("E-mail já cadastrado");
         }
+    }
+
+    public Usuario update(Usuario usuario, MultipartFile file) throws Exception{
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        if(filename != null && ! filename.isEmpty()){
+            filename = "perfil.png";
+            FileUpload.save(usuario, filename, file);
+            usuario.setFoto(filename);
+        }
+
+        Usuario usuarioAtualizado = this.repository.save(usuario);
+        return usuarioAtualizado;
     }
 
     

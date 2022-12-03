@@ -2,6 +2,8 @@ package com.aquario.projfinalnovostalentos.models;
 
 import javax.persistence.*;
 
+import com.aquario.projfinalnovostalentos.utils.FileUpload;
+
 @Entity
 @Table(name="usuario")
 public class Usuario {

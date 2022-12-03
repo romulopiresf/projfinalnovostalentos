@@ -19,6 +19,9 @@ public class LoginController extends GenericController {
 
     @GetMapping("/login")
     public String loginPage(ModelMap modelMap){
+        if(isLogged())
+            return "redirect:home";
+
         this.setUsuario(null);
         this.setup(modelMap, "Login");
         return "login";
@@ -26,7 +29,9 @@ public class LoginController extends GenericController {
 
     @PostMapping(value="/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String proccessForm (LoginForm loginForm, ModelMap modelMap){
-        System.out.println(loginForm);
+        if(isLogged())
+            return "redirect:home";
+
         try{
             Usuario usuario = this.service.login(loginForm);
             this.setUsuario(usuario);
