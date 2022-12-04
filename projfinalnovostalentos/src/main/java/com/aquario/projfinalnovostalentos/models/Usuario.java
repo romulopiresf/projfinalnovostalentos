@@ -24,6 +24,17 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Transient
+    public String getImagem(){
+        if(foto == null || pk == 0)
+            return null;
+        try{
+            return FileUpload.fileName(this, foto);
+        } catch(Exception e ){
+            return null;
+        }
+        
+    }
 
     public long getPk() {
         return this.pk;

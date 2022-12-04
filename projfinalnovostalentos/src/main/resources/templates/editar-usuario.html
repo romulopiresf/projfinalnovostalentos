@@ -7,6 +7,9 @@
     <main>
         <form th:action="@{/salvar-usuario}" method="post" th:object="${usuario}" enctype="multipart/form-data">
             <input type="hidden" name="pk" th:value="${usuario.pk}"/>
+            
+            <div class="foto-usuario" th:style="'background-image:url(\'/imagem/' + ${usuario.imagem} + '\');'"></div>
+
             <label for="nome">Nome</label>
             <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
             <label for="email">E-mail</label>
@@ -15,7 +18,6 @@
             <input type="password" placeholder="Senha" name="senha" required th:value="${usuario.senha}" />
             <label for="imagem">Foto</label>
             <input type="file" name="imagem" accept="image/png, image/jpeg, image/jpg"/>
-            <p th:text="${usuario.foto}"></p>
             <input type="submit" value="Atualizar"/>
             <p th:text="${erro}"></p>
         </form> 

@@ -1,5 +1,6 @@
 package com.aquario.projfinalnovostalentos.utils;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +16,7 @@ public class FileUpload {
     public static final String PATH = "~/uploads";
 
     public static void save(Usuario usuario, String name, MultipartFile file) throws Exception{
-        Path filePath = Paths.get(fileName(usuario, name));
+        Path filePath = Paths.get(fullFileName(usuario, name));
         try(InputStream inputStream = file.getInputStream()){
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch(Exception e){
@@ -23,7 +24,7 @@ public class FileUpload {
         }
     }
 
-    public static String fileName(Usuario usuario, String name) throws Exception{
+    public static String fullFileName(Usuario usuario, String name) throws Exception{
         String uploadDir = PATH + "/";
         if(usuario != null)
             uploadDir += usuario.getPk() + "/";
@@ -36,6 +37,30 @@ public class FileUpload {
 
         Path filePath = uploadPath.resolve(name);
         return filePath.toString();
+    }
+
+    public static String fileName(Usuario usuario, String name) throws Exception{
+        String uploadDir = "";
+        if(usuario != null)
+            uploadDir += usuario.getPk() + "/";
+        uploadDir += name;
+        return uploadDir;
+    }
+
+    public static byte[] readFile(String path){
+        String uploadDir = PATH + "/" + path;
+        uploadDir = uploadDir.replace("~", System.getProperty("user.home"));
+        Path uploadPath = Paths.get(uploadDir);
+        try{
+            return Files.readAllBytes(uploadPath);
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+            return null;
+        }
+        
+        
+        
     }
     
 }

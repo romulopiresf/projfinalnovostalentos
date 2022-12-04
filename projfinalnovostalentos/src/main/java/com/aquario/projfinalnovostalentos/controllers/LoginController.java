@@ -49,7 +49,7 @@ public class LoginController extends GenericController {
     @GetMapping("/logout")
     public String logoutPage(ModelMap modelMap){
         this.setUsuario(null);
-        return "redirect:login";
+        return "redirect:/login";
     }
     
 }

@@ -50,7 +50,7 @@ public class CadastroUsuarioController extends GenericController {
     @GetMapping("/editar-usuario")
     public String editarUsuarioPage(ModelMap modelMap){
         if(!isLogged())
-            return "redirect:login";
+            return "redirect:/login";
     
         this.setup(modelMap, "Editar Perfil");
         return "editar-usuario";
@@ -59,13 +59,13 @@ public class CadastroUsuarioController extends GenericController {
     @PostMapping("/salvar-usuario")
     public String salvarUsuarioPage(Usuario usuario, @RequestParam("imagem") MultipartFile file, ModelMap modelMap){
         if(!isLogged())
-            return "redirect:login";
+            return "redirect:/login";
     
         
         try{
             Usuario usuarioAtualizado = this.service.update(usuario, file);
             this.setUsuario(usuarioAtualizado);
-            return "redirect:home";
+            return "redirect:editar-usuario";
         }
         catch(Exception ex){
             modelMap.addAttribute("erro", ex.getMessage());

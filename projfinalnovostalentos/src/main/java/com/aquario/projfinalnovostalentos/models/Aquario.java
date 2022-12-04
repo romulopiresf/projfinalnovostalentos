@@ -2,6 +2,8 @@ package com.aquario.projfinalnovostalentos.models;
 
 import javax.persistence.*;
 
+import com.aquario.projfinalnovostalentos.utils.FileUpload;
+
 @Entity
 @Table(name="aquario")
 public class Aquario {
@@ -27,6 +29,18 @@ public class Aquario {
 
     @Column(nullable = false)
     private float volume;
+
+    @Transient
+    public String getImagem(){
+        if(foto == null || pk == 0)
+            return null;
+        try{
+            return FileUpload.fileName(null, foto);
+        } catch(Exception e ){
+            return null;
+        }
+        
+    }
 
 
     public long getPk() {

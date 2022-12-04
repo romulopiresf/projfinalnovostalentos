@@ -1,18 +1,17 @@
 <nav th:fragment="menu">
-    <div th:style="'background-image:url(\'/usuario-foto/' + ${usuario.pk} + '\');'">
+    <div class="foto-usuario" th:style="'background-image:url(\'/imagem/' + ${usuario.imagem} + '\');'">
         <a th:href="@{/editar-usuario}" title="Editar Perfil">
             <i class="fa fa-edit" aria-hidden="true"></i>
         </a>
     </div>
     <p th:text="${usuario.nome}"></p>
+    <a th:href="@{/home}">Home</a>
     <a th:href="@{/acoes}">Ações</a>
-    <a th:href="@{/home}">Aquários</a>
+    <a th:href="@{/aquarios}">Aquários</a>
     <a th:href="@{/equipamentos}">Equipamentos</a>
     <a th:href="@{/historico}">Histórico de Equipamentos</a>
     <a th:href="@{/parametros}">Parâmetros</a>
     <a th:href="@{/especies}">Espécies</a>
     
-
-
     <a th:href="@{/logout}">Sair</a>
 </nav>
