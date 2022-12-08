@@ -8,18 +8,18 @@
         <form th:action="@{/salvar-aquario}" method="post" th:object="${aquario}" enctype="multipart/form-data">
             <input type="hidden" name="pk" th:value="${aquario.pk}"/>
             
-            <div class="foto-usuario" th:style="'background-image:url(\'/imagem/' + ${aquario.imagem} + '\');'"></div>
+            <img class="foto-item" th:src="'/imagem/' + ${aquario.imagem}"/>
 
             <label for="nome">Nome</label>
             <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
             <label for="largura">Largura</label>
-            <input th:field="*{largura}" type="number" placeholder="Largura" name="largura" required/>
+            <input th:field="*{largura}" min="0" max="999999" step="0.1" type="number" placeholder="Largura" name="largura" required/>
             <label for="altura">Altura</label>
-            <input th:field="*{altura}" type="number" placeholder="Altura" name="altura" required/>
+            <input th:field="*{altura}" min="0" max="999999" step="0.1" type="number" placeholder="Altura" name="altura" required/>
             <label for="profundidade">Profundidade</label>
-            <input th:field="*{profundidade}" type="number" placeholder="profundidade" name="profundidade" required/>
+            <input th:field="*{profundidade}" min="0" max="999999" step="0.1" type="number" placeholder="profundidade" name="profundidade" required/>
             <label for="volume">Volume</label>
-            <input th:field="*{volume}" type="number" placeholder="Volume" name="volume" required/>
+            <input th:field="*{volume}" min="0" max="999999" step="0.1" type="number" placeholder="Volume" name="volume" required/>
             <label for="imagem">Foto</label>
             <input type="file" name="imagem" accept="image/png, image/jpeg, image/jpg"/>
             <input type="submit" value="Salvar"/>

@@ -64,6 +64,8 @@ public class AquarioController extends GenericController {
     
         System.out.println(aquario);
         try{
+            aquario.addUsuario(getUsuario());
+        
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
             Aquario aquarioAtualizado = this.repository.save(aquario);
             if(filename != null && ! filename.isEmpty()){
@@ -72,6 +74,7 @@ public class AquarioController extends GenericController {
                 aquarioAtualizado.setFoto(filename);
                 aquarioAtualizado = this.repository.save(aquario);
             }
+            
 
             return "redirect:aquarios";
         }

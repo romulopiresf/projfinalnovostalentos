@@ -1,5 +1,7 @@
 package com.aquario.projfinalnovostalentos.models;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 import com.aquario.projfinalnovostalentos.utils.FileUpload;
@@ -35,6 +37,18 @@ public class Usuario {
         }
         
     }
+
+    @ManyToMany(mappedBy = "usuarios")
+    private Set<Aquario> aquarios;
+
+
+    public void addAquario(Aquario aquario){
+        if(!aquarios.contains(aquario)){
+            aquarios.add(aquario);
+            aquario.addUsuario(this);
+        }
+    }
+
 
     public long getPk() {
         return this.pk;
@@ -76,6 +90,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public Set<Aquario> getAquarios() {
+        return this.aquarios;
+    }
+
+    public void setAquarios(Set<Aquario> aquarios) {
+        this.aquarios = aquarios;
+    }
+
 
     @Override
     public String toString() {
@@ -85,10 +107,9 @@ public class Usuario {
             ", senha='" + getSenha() + "'" +
             ", foto='" + getFoto() + "'" +
             ", email='" + getEmail() + "'" +
+            ", aquarios='" + getAquarios() + "'" +
             "}";
     }
-
-
 
     
 }

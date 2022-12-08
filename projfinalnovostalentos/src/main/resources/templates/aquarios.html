@@ -4,8 +4,18 @@
 <body>
     <div th:replace="~{base/menu :: menu}"></div> 
     <div th:replace="~{base/header :: header}"></div>
-    <main>
-          
+    <main class="lista">
+        <ul class="lista-item"> 
+            <li th:each="aquario: ${aquarios}">
+                <a th:href="'/editar-aquario/' + ${aquario.pk}">
+                    <div class="card" th:style="'background-image:url(\'/imagem/' + ${aquario.imagem} + '\');'">
+                        <div>
+                            <p th:text="${aquario.nome}"></p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>    
     </main>
     <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
 </body>

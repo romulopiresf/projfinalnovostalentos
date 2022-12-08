@@ -2,17 +2,24 @@ package com.aquario.projfinalnovostalentos.controllers;
 
 import com.aquario.projfinalnovostalentos.ProjfinalnovostalentosApplication;
 import com.aquario.projfinalnovostalentos.models.Usuario;
+import com.aquario.projfinalnovostalentos.repositories.UsuarioRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
 public class GenericController {
 
     private static Usuario usuario;
 
+    @Autowired
+    private UsuarioRepository usuario_repository;
+
 
     protected Usuario getUsuario() {
         return GenericController.usuario;
     }
+
+    protected void 
 
     protected void setUsuario(Usuario usuario) {
         GenericController.usuario = usuario;

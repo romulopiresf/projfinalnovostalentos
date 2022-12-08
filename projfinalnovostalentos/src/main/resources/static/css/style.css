@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    background-color: #090136;
+    background-color: #2a6dfc;
 }
 
 .login-form{
@@ -55,7 +55,8 @@ header{
 
 main{
     background-color: #fff;
-    min-height: 100%;
+    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -184,3 +185,59 @@ nav p{
     font-weight: bold;
     margin-bottom: 20px;
 }
+
+.foto-item{
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.lista-item{
+    list-style-type: none;
+    margin: 10px;
+    padding: 0px;
+    width: 100%;
+}
+
+.lista-item li{
+    margin-bottom: 20px;
+}
+
+.lista-item li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.card{
+    background-color: #fff;
+    width: 100%;
+    height: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 4px;
+    
+}
+
+.card div{
+    width: 100%;
+    height: 100%;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,0.00043767507002800965) 100%);
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+}
+
+.card div p{
+    color: #fff;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.lista{
+    background-color: transparent;
+}
+
+
