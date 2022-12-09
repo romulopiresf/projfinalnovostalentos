@@ -4,6 +4,8 @@ import com.aquario.projfinalnovostalentos.ProjfinalnovostalentosApplication;
 import com.aquario.projfinalnovostalentos.models.Usuario;
 import com.aquario.projfinalnovostalentos.repositories.UsuarioRepository;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
@@ -16,17 +18,27 @@ public class GenericController {
 
 
     protected Usuario getUsuario() {
-        return GenericController.usuario;
+        if(!isLogged())
+            return null;
+        Optional<Usuario> usuario = usuario_repository.findByPk(GenericController.usuario.getPk());
+        if(usuario.isPresent()){
+            return usuario.get();
+        }
+        return null;
     }
 
-    protected void 
+    protected void updateUsuario(){
+        if(isLogged()){
+            usuario_repository.save(getUsuario());
+        }
+    }
 
     protected void setUsuario(Usuario usuario) {
         GenericController.usuario = usuario;
     }
 
     protected boolean isLogged(){
-        return getUsuario() != null;
+        return GenericController.usuario != null;
     }
 
     protected void setup (ModelMap modelMap, String pageName){

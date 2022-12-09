@@ -1,5 +1,6 @@
 package com.aquario.projfinalnovostalentos.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -38,8 +39,9 @@ public class Usuario {
         
     }
 
-    @ManyToMany(mappedBy = "usuarios")
-    private Set<Aquario> aquarios;
+    @ManyToMany(fetch = FetchType.EAGER, 
+        mappedBy = "usuarios")
+    private Set<Aquario> aquarios = new HashSet<>();
 
 
     public void addAquario(Aquario aquario){
@@ -107,7 +109,6 @@ public class Usuario {
             ", senha='" + getSenha() + "'" +
             ", foto='" + getFoto() + "'" +
             ", email='" + getEmail() + "'" +
-            ", aquarios='" + getAquarios() + "'" +
             "}";
     }
 

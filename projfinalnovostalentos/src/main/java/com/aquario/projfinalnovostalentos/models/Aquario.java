@@ -1,8 +1,11 @@
 package com.aquario.projfinalnovostalentos.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Cascade;
 
 import com.aquario.projfinalnovostalentos.utils.FileUpload;
 
@@ -44,13 +47,13 @@ public class Aquario {
         
     }
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "aquario_usuario", 
         joinColumns = { @JoinColumn(name="aquario_pk")},
         inverseJoinColumns = {@JoinColumn(name="usuario_pk")}
     )
-    private Set<Usuario> usuarios;
+    private Set<Usuario> usuarios = new HashSet<>();
     
     public void addUsuario(Usuario usuario){
         if(!usuarios.contains(usuario)){

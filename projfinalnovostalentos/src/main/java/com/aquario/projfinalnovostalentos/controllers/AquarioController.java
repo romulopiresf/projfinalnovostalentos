@@ -70,15 +70,20 @@ public class AquarioController extends GenericController {
             Aquario aquarioAtualizado = this.repository.save(aquario);
             if(filename != null && ! filename.isEmpty()){
                 filename = "aquario_"+ aquarioAtualizado.getPk() + ".png";
+                System.out.println(filename);
                 FileUpload.save(null, filename, file);
                 aquarioAtualizado.setFoto(filename);
+                System.out.println(aquarioAtualizado);
                 aquarioAtualizado = this.repository.save(aquario);
+                System.out.println(aquarioAtualizado);
             }
             
+            updateUsuario();
 
             return "redirect:aquarios";
         }
         catch(Exception ex){
+            System.out.println(ex);
             modelMap.addAttribute("erro", ex.getMessage());
             return "redirect:editar-aquario/" + aquario.getPk();
         }
