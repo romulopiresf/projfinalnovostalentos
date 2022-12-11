@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main>
+        <form th:action="@{/salvar-especie}" method="post" th:object="${especie}" enctype="multipart/form-data">
+            <input type="hidden" name="pk" th:value="${especie.pk}"/>
+            
+            <img class="foto-item" th:src="'/imagem/' + ${especie.imagem}"/>
+
+            <label for="nome">Nome</label>
+            <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
+            <label for="quantidade">Quantidade</label>
+            <input th:field="*{quantidade}" min="0" max="999999" step="1" type="number" placeholder="quantidade" name="quantidade" required/>
+            <label for="alimento">Alimento</label>
+            <input th:field="*{alimento}" type="text" placeholder="Alimento" name="alimento" required/>
+            <label for="aquario">Aquário</label>
+            <select id="aquario_pk" name="aquario_pk">
+                <option th:each="aquario : ${aquarios}" th:value="${aquario.pk}" th:text="${aquario.nome}"></option>
+            </select>
+            
+            <label for="imagem">Foto</label>
+            <input type="file" name="imagem" accept="image/png, image/jpeg, image/jpg"/>
+            <input type="submit" value="Salvar"/>
+            <p th:text="${erro}"></p>
+        </form> 
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>

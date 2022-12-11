@@ -1,6 +1,12 @@
 <header th:fragment="header">
+    <a  class="btn-home" title="Home" th:if="${homePage != null}" th:href="${homePage}">
+        <i class="fa fa-home" aria-hidden="true"></i>
+    </a>
     <a  class="btn-add" title="Adicionar" th:if="${addPage != null}" th:href="${addPage}">
         <i class="fa fa-plus" aria-hidden="true"></i>
+    </a>
+    <a  class="btn-edit" title="Adicionar" th:if="${editPage != null}" th:href="${editPage}">
+        <i class="fa fa-edit" aria-hidden="true"></i>
     </a>
     <a  class="btn-cancelar" title="Cancelar" th:if="${cancelPage != null}" th:href="${cancelPage}">
         <i class="fa fa-arrow-left" aria-hidden="true"></i>

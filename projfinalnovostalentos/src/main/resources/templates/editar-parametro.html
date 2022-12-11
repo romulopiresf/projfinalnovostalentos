@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main>
+        <form th:action="@{/salvar-parametro}" method="post" th:object="${parametro}" enctype="multipart/form-data">
+            <input type="hidden" name="pk" th:value="${parametro.pk}"/>
+
+            <label for="nome">Nome</label>
+            <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
+            <label for="minimo">Mínimo</label>
+            <input th:field="*{minimo}" min="0" max="999999" step="0.1" type="number" placeholder="Mínimo" name="minimo" required/>
+            <label for="maximo">Máximo</label>
+            <input th:field="*{maximo}" min="0" max="999999" step="0.1" type="number" placeholder="Máximo" name="maximo" required/>
+            <input type="submit" value="Salvar"/>
+            <p th:text="${erro}"></p>
+        </form> 
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>

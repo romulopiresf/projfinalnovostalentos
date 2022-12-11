@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main>
+        <form th:action="@{/salvar-equipamento}" method="post" th:object="${equipamento}" enctype="multipart/form-data">
+            <input type="hidden" name="pk" th:value="${equipamento.pk}"/>
+
+            <label for="nome">Nome</label>
+            <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
+            <label for="id">ID</label>
+            <input th:field="*{id}" type="text" placeholder="ID" name="id" required/>
+            <label for="aquario">Aquário</label>
+            <select id="aquario_pk" name="aquario_pk">
+                <option th:each="aquario : ${aquarios}" th:value="${aquario.pk}" th:text="${aquario.nome}"></option>
+            </select>
+            <input type="submit" value="Salvar"/>
+            <p th:text="${erro}"></p>
+        </form> 
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main>
+        <section class="secao-foto" th:style="'background-image:url(\'/imagem/' + ${aquario.imagem} + '\');'">
+            <div>
+                <h1 th:text="${aquario.nome}"></h1>
+            </div>
+        </section>
+        <section class="secao-items">
+            <div class="secao-titulo">
+                <h2>Equipamentos</h2>
+                <a  class="btn-add" title="Adicionar" th:href="@{/editar-equipamento/0}">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blocos">
+                <div th:each="item: ${equipamentos}" th:class="${item.status} ? 'block-on' : 'block-off'">
+                    <a th:href="'/mudar-equipamento/' + ${aquario.pk} + '/' + ${item.pk}">
+                        <p th:text="${item.nome}"></p>
+                        <span th:text="${item.status} ? 'Ligado' : 'Desligado'"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="secao-items">
+            <div class="secao-titulo">
+                <h2>Parâmetros</h2>
+                <a  class="btn-add" title="Adicionar" th:href="@{/editar-parametro-aquario/0}">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blocos">
+                
+            </div>
+        </section>
+        <section class="secao-items">
+            <div class="secao-titulo">
+                <h2>Espécies</h2>
+                <a  class="btn-add" title="Adicionar" th:href="@{/editar-especie/0}">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blocos">
+                <div class="bloco-foto" th:each="item: ${especies}" th:style="'background-image:url(\'/imagem/' + ${item.imagem} + '\');'">
+                    <a th:href="'/editar-especie/' + ${item.pk}">
+                        <p th:text="${item.nome}"></p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>

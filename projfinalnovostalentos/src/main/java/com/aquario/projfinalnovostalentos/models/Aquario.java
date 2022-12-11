@@ -54,6 +54,9 @@ public class Aquario {
         inverseJoinColumns = {@JoinColumn(name="usuario_pk")}
     )
     private Set<Usuario> usuarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "aquario")
+    private Set<Equipamento> equipamentos = new HashSet<>();
     
     public void addUsuario(Usuario usuario){
         if(!usuarios.contains(usuario)){

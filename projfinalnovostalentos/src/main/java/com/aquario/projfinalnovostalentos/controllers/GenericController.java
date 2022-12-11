@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 public class GenericController {
 
     private static Usuario usuario;
+    private boolean editPage = false;
 
     @Autowired
     private UsuarioRepository usuario_repository;
@@ -41,24 +42,39 @@ public class GenericController {
         return GenericController.usuario != null;
     }
 
+    protected void setEditPage(boolean editPage){
+        this.editPage = editPage;
+    }
+
     protected void setup (ModelMap modelMap, String pageName){
-        setup(modelMap, pageName, null, null);
+        setup(modelMap, pageName, null, null, false);
     }
 
     protected void setup (ModelMap modelMap, String pageName, String addPage){
-        setup(modelMap, pageName, addPage, null);
+        setup(modelMap, pageName, addPage, null, false);
     }
 
     protected void setup (ModelMap modelMap, String pageName, String addPage, String cancelPage){
+        setup(modelMap, pageName, addPage, cancelPage, false);
+    }
+
+    protected void setup (ModelMap modelMap, String pageName, String addPage, String cancelPage, boolean btnHome){
         modelMap.addAttribute("appName", ProjfinalnovostalentosApplication.AppName);
         modelMap.addAttribute("title", ProjfinalnovostalentosApplication.AppName + " - " + pageName);
         modelMap.addAttribute("page", pageName);
         if(addPage!=null){
-            modelMap.addAttribute("addPage", addPage);
+            if(this.editPage)
+                modelMap.addAttribute("editPage", addPage);
+            else
+                modelMap.addAttribute("addPage", addPage);
         }
         if(cancelPage != null)
         {
             modelMap.addAttribute("cancelPage", cancelPage);
+        }
+        if(btnHome)
+        {
+            modelMap.addAttribute("homePage", "/");
         }
         if(isLogged()){
             modelMap.addAttribute("usuario", getUsuario()); 

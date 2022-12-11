@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main class="lista">
+        <ul class="lista-item"> 
+            <li th:each="equipamento: ${equipamentos}">
+                <a class="btn-action" title="Mudar status" th:href="'/mudar-status-equipamento/' + ${equipamento.pk}">
+                    <i class="fa fa-toggle-off" aria-hidden="true" th:if="${!equipamento.status}" style="color: red;"></i>
+                    <i class="fa fa-toggle-on" aria-hidden="true" th:if="${equipamento.status}" style="color: green;"></i>
+                </a>
+                <a class="item" th:href="'/editar-equipamento/' + ${equipamento.pk}">
+                    <div class="card">
+                        <div style="background: rgb(2,0,36);">
+                            <p th:text="${equipamento.nome}"></p>
+                            <p th:text="'Aquário: ' + ${equipamento.aquario.nome}"></p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>    
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>
