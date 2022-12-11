@@ -52,7 +52,7 @@ public class CadastroUsuarioController extends GenericController {
         if(!isLogged())
             return "redirect:/login";
     
-        this.setup(modelMap, "Editar Perfil");
+        this.setup(modelMap, "Editar Perfil", null, "/home");
         return "editar-usuario";
     }
 

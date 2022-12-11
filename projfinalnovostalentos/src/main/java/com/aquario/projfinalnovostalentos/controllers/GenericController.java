@@ -42,15 +42,23 @@ public class GenericController {
     }
 
     protected void setup (ModelMap modelMap, String pageName){
-        setup(modelMap, pageName, null);
+        setup(modelMap, pageName, null, null);
     }
 
     protected void setup (ModelMap modelMap, String pageName, String addPage){
+        setup(modelMap, pageName, addPage, null);
+    }
+
+    protected void setup (ModelMap modelMap, String pageName, String addPage, String cancelPage){
         modelMap.addAttribute("appName", ProjfinalnovostalentosApplication.AppName);
         modelMap.addAttribute("title", ProjfinalnovostalentosApplication.AppName + " - " + pageName);
         modelMap.addAttribute("page", pageName);
         if(addPage!=null){
             modelMap.addAttribute("addPage", addPage);
+        }
+        if(cancelPage != null)
+        {
+            modelMap.addAttribute("cancelPage", cancelPage);
         }
         if(isLogged()){
             modelMap.addAttribute("usuario", getUsuario()); 

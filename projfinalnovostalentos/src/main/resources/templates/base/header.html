@@ -2,6 +2,9 @@
     <a  class="btn-add" title="Adicionar" th:if="${addPage != null}" th:href="${addPage}">
         <i class="fa fa-plus" aria-hidden="true"></i>
     </a>
+    <a  class="btn-cancelar" title="Cancelar" th:if="${cancelPage != null}" th:href="${cancelPage}">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
     <span th:text="${page}"></span>
     <a  class="ssm-toggle-nav" href="#" title="Menu">
         <i class="fa fa-bars" aria-hidden="true"></i>

@@ -53,7 +53,7 @@ public class AquarioController extends GenericController {
             aquario = new Aquario();    
         System.out.println(aquario);
         modelMap.addAttribute("aquario", aquario);
-        this.setup(modelMap, "Editar Aquário");
+        this.setup(modelMap, "Editar Aquário", null, "/aquarios");
         return "editar-aquario";
     }
 
@@ -63,23 +63,24 @@ public class AquarioController extends GenericController {
             return "redirect:/login";
     
         System.out.println(aquario);
-        try{
-            aquario.addUsuario(getUsuario());
-        
+        try{    
+
             String filename = StringUtils.cleanPath(file.getOriginalFilename());
-            Aquario aquarioAtualizado = this.repository.save(aquario);
             if(filename != null && ! filename.isEmpty()){
-                filename = "aquario_"+ aquarioAtualizado.getPk() + ".png";
+                if(aquario.getPk() == 0)
+                {
+                    aquario = repository.save(aquario);
+                }
+                filename = "aquario_"+ aquario.getPk() + ".png";
                 System.out.println(filename);
                 FileUpload.save(null, filename, file);
-                aquarioAtualizado.setFoto(filename);
-                System.out.println(aquarioAtualizado);
-                aquarioAtualizado = this.repository.save(aquario);
-                System.out.println(aquarioAtualizado);
+                aquario.setFoto(filename);
+                System.out.println(aquario);
             }
-            
-            updateUsuario();
 
+            aquario.addUsuario(getUsuario());
+            aquario = this.repository.save(aquario);      
+            updateUsuario();
             return "redirect:aquarios";
         }
         catch(Exception ex){
