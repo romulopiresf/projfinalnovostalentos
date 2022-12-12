@@ -58,6 +58,21 @@
                 </div>
             </div>
         </section>
+        <section class="secao-items">
+            <div class="secao-titulo">
+                <h2>Usuários</h2>
+                <a  class="btn-add" title="Adicionar" th:href="@{/editar-usuario-aquario/} + ${aquario.pk} + '/0'">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blocos">
+                <div class="bloco-foto" th:each="item: ${aquario.usuarios}" th:style="'background-image:url(\'/imagem/' + ${item.imagem} + '\');'">
+                    <a th:href="'/editar-usuario-aquario/' + ${aquario.pk} + '/' + ${item.pk}">
+                        <p th:text="${item.nome}"></p>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
     <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
 </body>
