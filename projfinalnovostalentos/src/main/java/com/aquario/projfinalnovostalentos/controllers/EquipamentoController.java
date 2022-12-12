@@ -39,7 +39,8 @@ public class EquipamentoController extends GenericController {
         Iterable<Equipamento> items = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("equipamentos", items);
         System.out.println(items);
-    
+        
+        setEditPage(false);
         this.setup(modelMap, "Equipamentos", "/editar-equipamento/0", null, true);
         return "equipamentos";
     }
@@ -60,6 +61,7 @@ public class EquipamentoController extends GenericController {
         Iterable<Aquario> aquarios = aquarioRepository.findAllByOrderByPkDesc();
         modelMap.addAttribute("aquarios", aquarios);
 
+        setEditPage(false);
         modelMap.addAttribute("equipamento", equipamento);
         this.setup(modelMap, "Editar Equipamento", null, "/equipamentos");
         return "editar-equipamento";

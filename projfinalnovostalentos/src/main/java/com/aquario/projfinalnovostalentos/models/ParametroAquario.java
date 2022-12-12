@@ -27,6 +27,18 @@ public class ParametroAquario {
     @Transient
     private String classe;
 
+    @Transient
+    public String getStatus(){
+        if(classe.equals("otimo"))
+            return "Ótimo";
+        else if(classe.equals("bom"))
+            return "Bom";
+        else if(classe.equals("ruim"))
+            return "Ruim";
+        else
+            return "Muito ruim";
+    }
+
     public long getPk() {
         return this.pk;
     }

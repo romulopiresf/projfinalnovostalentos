@@ -31,6 +31,7 @@ public class ParametroController extends GenericController {
         modelMap.addAttribute("parametros", items);
         System.out.println(items);
     
+        setEditPage(false);
         this.setup(modelMap, "Parâmetros", "/editar-parametro/0", null, true);
         return "parametros";
     }

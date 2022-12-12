@@ -42,6 +42,8 @@ public class EspecieController extends GenericController {
         Iterable<Especie> especies = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("especies", especies);
         System.out.println(especies);
+
+        setEditPage(false);
     
         this.setup(modelMap, "Espécies", "/editar-especie/0", null, true);
         return "especies";

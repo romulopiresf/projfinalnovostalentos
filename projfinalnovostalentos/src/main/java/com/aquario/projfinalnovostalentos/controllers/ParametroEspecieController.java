@@ -61,6 +61,8 @@ public class ParametroEspecieController extends GenericController {
         modelMap.addAttribute("parametros", parametros);
 
         modelMap.addAttribute("parametroEspecie", parametroEspecie);
+
+        setEditPage(false);
         this.setup(modelMap, "Editar Parâmetro da Espécie", null, "/ver-especie/" + especie.getPk());
         return "editar-parametro-especie";
     }

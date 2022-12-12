@@ -38,6 +38,7 @@
                     <a th:href="'/editar-parametro-aquario/' + ${aquario.pk} + '/' + ${item.pk}" th:class="'classe-' + ${item.classe}">
                         <span th:text="${item.parametro.nome}"></span>
                         <p th:text="${item.valor}"></p>
+                        <span th:text="${item.status}"></span>
                         <span th:text="${item.parametro.minimo} + ' - ' + ${item.parametro.maximo}"></span>
                     </a>
                 </div>

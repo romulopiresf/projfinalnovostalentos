@@ -101,7 +101,7 @@ public class AcaoService {
                 
                 Duration duration = Duration.between(dateTime, now);
                 long hours = duration.toHours();
-                if(hours > 2)
+                if(hours > 8)
                 {
                     if(equipamento.isStatus())
                         acoes.add(criarAcao(equipamento, "Desligar"));

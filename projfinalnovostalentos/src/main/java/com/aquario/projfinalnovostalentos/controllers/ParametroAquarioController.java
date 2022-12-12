@@ -60,6 +60,7 @@ public class ParametroAquarioController extends GenericController {
         modelMap.addAttribute("parametros", parametros);
 
         modelMap.addAttribute("parametroAquario", parametroAquario);
+        setEditPage(false);
         this.setup(modelMap, "Editar Parâmetro do Aquário", null, "/ver-aquario/" + aquario.getPk());
         return "editar-parametro-aquario";
     }
