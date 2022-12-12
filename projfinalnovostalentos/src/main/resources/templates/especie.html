@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="~{base/head :: head}"></head>
+<body>
+    <div th:replace="~{base/menu :: menu}"></div> 
+    <div th:replace="~{base/header :: header}"></div>
+    <main>
+        <section class="secao-foto" th:style="'background-image:url(\'/imagem/' + ${especie.imagem} + '\');'">
+            <div>
+                <h1 th:text="${especie.nome}"></h1>
+            </div>
+        </section>
+        <section class="secao-items">
+            <div class="secao-titulo">
+                <h2>Parâmetros</h2>
+                <a  class="btn-add" title="Adicionar" th:href="'/editar-parametro-especie/' + ${especie.pk} + '/0'">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="blocos">
+                <div th:each="item: ${parametros}" class="bloco-info">
+                    <a th:href="'/editar-parametro-especie/' + ${especie.pk} + '/' + ${item.pk}">
+                        <span th:text="${item.parametro.nome}"></span>
+                        <p th:text="${item.valor}"></p>
+                        <span th:text="${item.parametro.minimo} + ' - ' + ${item.parametro.maximo}"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div th:replace="~{base/menu-overlay :: menu-overlay}"></div>
+</body>
+</html>

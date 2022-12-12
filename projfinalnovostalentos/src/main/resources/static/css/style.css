@@ -56,10 +56,8 @@ header{
 main{
     background-color: #fff;
     min-height: 100vh;
-    height: 100vh;
     width: 100%;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     
 }
@@ -176,20 +174,48 @@ section .blocos div a span{
     font-size: 12px;
 }
 
-section .blocos div.block-on{
+section .blocos div.bloco-on{
     background-color: #9fa8f7;
 }
 
-section .blocos div.block-on a{
+section .blocos div.bloco-on a{
     color: #FFF;
 }
 
-section .blocos div.block-off{
+section .blocos div.bloco-off{
     background-color: #fcfcfc;
 }
 
-section .blocos div.block-off a{
+section .blocos div.bloco-off a{
     color: #333;
+}
+
+section .blocos div.bloco-info{
+    background-color: #fcfcfc;
+}
+
+section .blocos div.bloco-info a{
+    color: #333;
+}
+
+section .blocos div a.classe-otimo{
+    background-color: #0057c9;
+    color: #fff;
+}
+
+section .blocos div a.classe-bom{
+    background-color: #27af05;
+    color: #fff;
+}
+
+section .blocos div a.classe-ruim{
+    background-color: #e7d800;
+    color: #fff;
+}
+
+section .blocos div a.classe-muit-ruim{
+    background-color: #e72e00;
+    color: #fff;
 }
 
 header a{

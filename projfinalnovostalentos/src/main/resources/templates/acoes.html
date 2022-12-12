@@ -6,11 +6,12 @@
     <div th:replace="~{base/header :: header}"></div>
     <main class="lista">
         <ul class="lista-item"> 
-            <li th:each="especie: ${especies}">
-                <a class="item" th:href="'/ver-especie/' + ${especie.pk}">
-                    <div class="card" th:style="'background-image:url(\'/imagem/' + ${especie.imagem} + '\');'">
-                        <div>
-                            <p th:text="${especie.nome}"></p>
+            <li th:each="item: ${acoes}">
+                <a class="item">
+                    <div class="card">
+                        <div style="background: rgb(2,0,36);">
+                            <p th:text="${item.acao}"></p>
+                            <p th:text="${item.data} + '  ' + ${item.hora}"></p>
                         </div>
                     </div>
                 </a>

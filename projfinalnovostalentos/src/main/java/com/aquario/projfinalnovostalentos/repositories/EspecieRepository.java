@@ -12,5 +12,7 @@ public interface EspecieRepository extends CrudRepository<Especie,Integer> {
     Optional<Especie> findByNome(String nome);
     Optional<Especie> findByPk(long pk);
     Iterable<Especie> findByAquario(Aquario aquario);
+
+    Iterable<Especie> findAllByOrderByPkDesc();
     
 }

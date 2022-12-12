@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name="parametro_aquario")
-public class ParametroAquario {
+@Table(name="parametro_especie")
+public class ParametroEspecie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,15 +17,13 @@ public class ParametroAquario {
     private float valor;
 
     @ManyToOne
-    @JoinColumn(name="aquario_pk", nullable = false)
-    private Aquario aquario;
+    @JoinColumn(name="especie_pk", nullable = false)
+    private Especie especie;
 
     @ManyToOne
     @JoinColumn(name="parametro_pk", nullable = false)
     private Parametro parametro;
 
-    @Transient
-    private String classe;
 
     public long getPk() {
         return this.pk;
@@ -43,12 +41,12 @@ public class ParametroAquario {
         this.valor = valor;
     }
 
-    public Aquario getAquario() {
-        return this.aquario;
+    public Especie getEspecie() {
+        return this.especie;
     }
 
-    public void setAquario(Aquario aquario) {
-        this.aquario = aquario;
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
     }
 
     public Parametro getParametro() {
@@ -59,21 +57,12 @@ public class ParametroAquario {
         this.parametro = parametro;
     }
 
-
-    public String getClasse() {
-        return this.classe;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
     @Override
     public String toString() {
         return "{" +
             " pk='" + getPk() + "'" +
             ", valor='" + getValor() + "'" +
-            ", aquario='" + getAquario() + "'" +
+            ", especie='" + getEspecie() + "'" +
             ", parametro='" + getParametro() + "'" +
             "}";
     }

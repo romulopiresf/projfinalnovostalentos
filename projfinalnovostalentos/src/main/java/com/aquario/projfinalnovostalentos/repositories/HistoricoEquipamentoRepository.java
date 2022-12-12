@@ -11,5 +11,7 @@ public interface HistoricoEquipamentoRepository extends CrudRepository<Historico
 
     Optional<HistoricoEquipamento> findByPk(long pk);
     Iterable<HistoricoEquipamento> findByEquipamento(Equipamento equipamento);
+    Optional<HistoricoEquipamento> findFirstByEquipamentoOrderByPkDesc(Equipamento equipamento);
     
+    Iterable<HistoricoEquipamento> findAllByOrderByPkDesc();
 }

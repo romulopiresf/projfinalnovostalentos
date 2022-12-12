@@ -15,6 +15,7 @@ import com.aquario.projfinalnovostalentos.repositories.EquipamentoRepository;
 import com.aquario.projfinalnovostalentos.repositories.EspecieRepository;
 import com.aquario.projfinalnovostalentos.repositories.ParametroAquarioRepository;
 import com.aquario.projfinalnovostalentos.services.EquipamentoService;
+import com.aquario.projfinalnovostalentos.services.ParametroService;
 import com.aquario.projfinalnovostalentos.utils.FileUpload;
 
 import org.springframework.ui.ModelMap;
@@ -43,12 +44,15 @@ public class AquarioController extends GenericController {
     @Autowired
     private EquipamentoService equipamentoService;
 
+    @Autowired
+    private ParametroService parametroService;
+
     @GetMapping("/aquarios")
     public String lista(ModelMap modelMap){
         if(!isLogged())
             return "redirect:/login";
 
-        Iterable<Aquario> items = repository.findAll();
+        Iterable<Aquario> items = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("aquarios", items);
         System.out.println(items);
 
@@ -76,6 +80,9 @@ public class AquarioController extends GenericController {
         modelMap.addAttribute("equipamentos", equipamentos);
 
         Iterable<ParametroAquario> parametros = parametroAquarioRepository.findByAquario(aquario);
+        for (ParametroAquario parametroAquario : parametros) {
+            parametroService.calcularClasse(parametroAquario);
+        }
         System.out.println(parametros);
         modelMap.addAttribute("parametros", parametros);
 
@@ -85,7 +92,7 @@ public class AquarioController extends GenericController {
 
 
         setEditPage(true);
-        this.setup(modelMap, aquario.getNome(), "/editar-aquario/" + aquario.getPk(), null, true);
+        this.setup(modelMap, "Aquário", "/editar-aquario/" + aquario.getPk(), null, true);
         return "aquario";
     }
 

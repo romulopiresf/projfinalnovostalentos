@@ -13,4 +13,6 @@ public interface ParametroAquarioRepository extends CrudRepository<ParametroAqua
     Optional<ParametroAquario> findByPk(long pk);
     Iterable<ParametroAquario> findByAquario(Aquario aquario);
     Iterable<ParametroAquario> findByParametro(Parametro parametro);
+
+    Iterable<ParametroAquario> findAllByOrderByPkDesc();
 }

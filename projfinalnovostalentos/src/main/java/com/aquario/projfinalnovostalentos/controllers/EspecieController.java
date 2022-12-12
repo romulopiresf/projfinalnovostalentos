@@ -8,8 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aquario.projfinalnovostalentos.models.Aquario;
 import com.aquario.projfinalnovostalentos.models.Especie;
+import com.aquario.projfinalnovostalentos.models.ParametroEspecie;
 import com.aquario.projfinalnovostalentos.repositories.AquarioRepository;
 import com.aquario.projfinalnovostalentos.repositories.EspecieRepository;
+import com.aquario.projfinalnovostalentos.repositories.ParametroEspecieRepository;
 import com.aquario.projfinalnovostalentos.utils.FileUpload;
 
 import org.springframework.ui.ModelMap;
@@ -29,17 +31,42 @@ public class EspecieController extends GenericController {
     @Autowired
     private AquarioRepository aquarioRepository;
 
+    @Autowired
+    private ParametroEspecieRepository parametroEspecieRepository;
+
     @GetMapping("/especies")
     public String lista(ModelMap modelMap){
         if(!isLogged())
             return "redirect:/login";
 
-        Iterable<Especie> especies = repository.findAll();
+        Iterable<Especie> especies = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("especies", especies);
         System.out.println(especies);
     
         this.setup(modelMap, "Espécies", "/editar-especie/0", null, true);
         return "especies";
+    }
+
+    @GetMapping("/ver-especie/{pk}")
+    public String ver(@PathVariable("pk") int pk, ModelMap modelMap){
+        if(!isLogged())
+            return "redirect:/login";
+        System.out.println(pk);
+        Optional<Especie> busca = this.repository.findByPk(pk);
+        if(!busca.isPresent())
+            return "redirect:/especies";
+
+        Especie especie = busca.get();
+        System.out.println(especie);
+        modelMap.addAttribute("especie", especie);
+
+        Iterable<ParametroEspecie> parametros = parametroEspecieRepository.findByEspecie(especie);
+        System.out.println(parametros);
+        modelMap.addAttribute("parametros", parametros);
+
+        setEditPage(true);
+        this.setup(modelMap, "Espécie", "/editar-especie/" + especie.getPk(), null, true);
+        return "especie";
     }
 
     @GetMapping("/editar-especie/{pk}")
@@ -55,7 +82,7 @@ public class EspecieController extends GenericController {
             especie = new Especie();    
         System.out.println(especie);
 
-        Iterable<Aquario> aquarios = aquarioRepository.findAll();
+        Iterable<Aquario> aquarios = aquarioRepository.findAllByOrderByPkDesc();
         modelMap.addAttribute("aquarios", aquarios);
 
         modelMap.addAttribute("especie", especie);

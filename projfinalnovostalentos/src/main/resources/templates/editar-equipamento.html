@@ -12,7 +12,7 @@
             <input th:field="*{nome}" type="text" placeholder="Nome" name="nome" required/>
             <label for="id">ID</label>
             <input th:field="*{id}" type="text" placeholder="ID" name="id" required/>
-            <label for="aquario">Aquário</label>
+            <label for="aquario_pk">Aquário</label>
             <select id="aquario_pk" name="aquario_pk">
                 <option th:each="aquario : ${aquarios}" th:value="${aquario.pk}" th:text="${aquario.nome}"></option>
             </select>

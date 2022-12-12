@@ -12,4 +12,6 @@ public interface EquipamentoRepository extends CrudRepository<Equipamento,Intege
     Optional<Equipamento> findByNome(String nome);
     Optional<Equipamento> findByPk(long pk);
     Iterable<Equipamento> findByAquario(Aquario aquario);
+
+    Iterable<Equipamento> findAllByOrderByPkDesc();
 }

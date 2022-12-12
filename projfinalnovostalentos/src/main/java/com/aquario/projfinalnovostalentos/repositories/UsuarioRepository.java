@@ -10,4 +10,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Integer> {
 
     Optional<Usuario> findByEmail(String email);
     Optional<Usuario> findByPk(long pk);
+
+    Iterable<Usuario> findAllByOrderByPkDesc();
 }

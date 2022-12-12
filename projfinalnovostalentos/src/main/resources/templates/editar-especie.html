@@ -16,7 +16,7 @@
             <input th:field="*{quantidade}" min="0" max="999999" step="1" type="number" placeholder="quantidade" name="quantidade" required/>
             <label for="alimento">Alimento</label>
             <input th:field="*{alimento}" type="text" placeholder="Alimento" name="alimento" required/>
-            <label for="aquario">Aquário</label>
+            <label for="aquario_pk">Aquário</label>
             <select id="aquario_pk" name="aquario_pk">
                 <option th:each="aquario : ${aquarios}" th:value="${aquario.pk}" th:text="${aquario.nome}"></option>
             </select>

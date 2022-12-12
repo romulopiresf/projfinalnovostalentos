@@ -27,7 +27,7 @@ public class ParametroController extends GenericController {
         if(!isLogged())
             return "redirect:/login";
 
-        Iterable<Parametro> items = repository.findAll();
+        Iterable<Parametro> items = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("parametros", items);
         System.out.println(items);
     

@@ -36,7 +36,7 @@ public class EquipamentoController extends GenericController {
         if(!isLogged())
             return "redirect:/login";
 
-        Iterable<Equipamento> items = repository.findAll();
+        Iterable<Equipamento> items = repository.findAllByOrderByPkDesc();
         modelMap.addAttribute("equipamentos", items);
         System.out.println(items);
     
@@ -57,7 +57,7 @@ public class EquipamentoController extends GenericController {
             equipamento = new Equipamento();    
         System.out.println(equipamento);
 
-        Iterable<Aquario> aquarios = aquarioRepository.findAll();
+        Iterable<Aquario> aquarios = aquarioRepository.findAllByOrderByPkDesc();
         modelMap.addAttribute("aquarios", aquarios);
 
         modelMap.addAttribute("equipamento", equipamento);

@@ -10,5 +10,7 @@ public interface ParametroRepository extends CrudRepository<Parametro,Integer> {
 
     Optional<Parametro> findByNome(String nome);
     Optional<Parametro> findByPk(long pk);
+
+    Iterable<Parametro> findAllByOrderByPkDesc();
     
 }

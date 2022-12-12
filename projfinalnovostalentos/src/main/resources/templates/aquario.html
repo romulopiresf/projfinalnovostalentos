@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="blocos">
-                <div th:each="item: ${equipamentos}" th:class="${item.status} ? 'block-on' : 'block-off'">
+                <div th:each="item: ${equipamentos}" th:class="${item.status} ? 'bloco-on' : 'bloco-off'">
                     <a th:href="'/mudar-equipamento/' + ${aquario.pk} + '/' + ${item.pk}">
                         <p th:text="${item.nome}"></p>
                         <span th:text="${item.status} ? 'Ligado' : 'Desligado'"></span>
@@ -29,12 +29,18 @@
         <section class="secao-items">
             <div class="secao-titulo">
                 <h2>Parâmetros</h2>
-                <a  class="btn-add" title="Adicionar" th:href="@{/editar-parametro-aquario/0}">
+                <a  class="btn-add" title="Adicionar" th:href="'/editar-parametro-aquario/' + ${aquario.pk} + '/0'">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="blocos">
-                
+                <div th:each="item: ${parametros}" class="bloco-info">
+                    <a th:href="'/editar-parametro-aquario/' + ${aquario.pk} + '/' + ${item.pk}" th:class="'classe-' + ${item.classe}">
+                        <span th:text="${item.parametro.nome}"></span>
+                        <p th:text="${item.valor}"></p>
+                        <span th:text="${item.parametro.minimo} + ' - ' + ${item.parametro.maximo}"></span>
+                    </a>
+                </div>
             </div>
         </section>
         <section class="secao-items">
@@ -46,7 +52,7 @@
             </div>
             <div class="blocos">
                 <div class="bloco-foto" th:each="item: ${especies}" th:style="'background-image:url(\'/imagem/' + ${item.imagem} + '\');'">
-                    <a th:href="'/editar-especie/' + ${item.pk}">
+                    <a th:href="'/ver-especie/' + ${item.pk}">
                         <p th:text="${item.nome}"></p>
                     </a>
                 </div>
